@@ -12,9 +12,17 @@
  * 3. Assignments sheet columns: GiverID | GiverName | RecipientID | RecipientName | Timestamp
  * 4. Deploy this script as a web app with "Anyone" access
  * 5. Copy the deployment URL to the frontend .env file as VITE_APPS_SCRIPT_URL
+ * 
+ * IMPORTANT: Replace 'YOUR_SPREADSHEET_ID' below with your actual Google Sheets ID
+ * The spreadsheet ID can be found in the URL of your Google Sheet:
+ * https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit
+ * 
+ * For production use, consider using PropertiesService for secure configuration:
+ * const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
  */
 
-// Configure your spreadsheet ID here
+// REQUIRED: Configure your spreadsheet ID here
+// Find it in your Google Sheet URL: https://docs.google.com/spreadsheets/d/{THIS_IS_YOUR_ID}/edit
 const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID';
 
 /**

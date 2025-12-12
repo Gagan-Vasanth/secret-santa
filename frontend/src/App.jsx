@@ -1,22 +1,19 @@
 import { useState } from 'react'
-import Login from './components/Login'
-import MagicalHat from './components/MagicalHat'
+import Login from './components/Login' // eslint-disable-line no-unused-vars
+import MagicalHat from './components/MagicalHat' // eslint-disable-line no-unused-vars
 import './App.css'
 
 function App() {
   const [user, setUser] = useState(null)
-  const [pickComplete, setPickComplete] = useState(false)
 
   const handleLogin = (userData) => {
     setUser(userData)
   }
 
-  const handlePickComplete = (recipient) => {
-    setPickComplete(true)
+  const handlePickComplete = () => {
     setTimeout(() => {
       // Reset after showing the result
       setUser(null)
-      setPickComplete(false)
     }, 5000)
   }
 

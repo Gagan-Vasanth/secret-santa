@@ -36,7 +36,7 @@ export const mockValidateUser = (name, dob) => {
   });
 };
 
-export const mockPickRecipient = (userId, name, dob) => {
+export const mockPickRecipient = (userId, name) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const user = mockUsers.find(u => u.userId === userId);

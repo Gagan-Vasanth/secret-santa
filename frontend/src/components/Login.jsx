@@ -7,6 +7,7 @@ const Login = ({ onLogin }) => {
   const [dob, setDob] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const shouldUseMockApi = useMockApi();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const Login = ({ onLogin }) => {
       let data;
       
       // Use mock API if in development mode
-      if (useMockApi()) {
+      if (shouldUseMockApi) {
         data = await mockValidateUser(name.trim(), dob);
       } else {
         // Call Google Apps Script API
