@@ -31,13 +31,24 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .scene {
@@ -70,67 +81,160 @@
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
 }
 
-.sparkle:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-.sparkle:nth-child(2) { top: 30%; right: 0; }
-.sparkle:nth-child(3) { bottom: 30%; right: 0; }
-.sparkle:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
-.sparkle:nth-child(5) { top: 30%; left: 0; }
+.sparkle:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.sparkle:nth-child(2) {
+  top: 30%;
+  right: 0;
+}
+.sparkle:nth-child(3) {
+  bottom: 30%;
+  right: 0;
+}
+.sparkle:nth-child(4) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.sparkle:nth-child(5) {
+  top: 30%;
+  left: 0;
+}
 
 .hat {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hat:hover {
-  transform: scale(1.05);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
-.hat-top {
-  font-size: 15rem;
+/* CSS Animations to replace GSAP */
+@keyframes hatEntrance {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkleEntrance {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sparkleFloat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+@keyframes hatPicking {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes cardReveal {
+  0% {
+    transform: translateY(200px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateY(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Animation classes */
+.hat.animate-entrance {
+  animation: hatEntrance 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.sparkles.animate-entrance {
+  animation: sparkleEntrance 0.5s ease-out 0.5s forwards;
+}
+
+.sparkle {
+  animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) {
+  animation-delay: 0s;
+}
+.sparkle:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.sparkle:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.sparkle:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.sparkle:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.hat.picking {
+  animation: hatPicking 0.6s ease-in-out infinite;
+}
+
+.card.animate-reveal {
+  animation: cardReveal 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.hat-image {
+  width: min(50vw, 400px);
+  height: auto;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
   user-select: none;
-}
-
-.hand {
-  position: absolute;
-  left: 100px;
-  top: 50%;
-  z-index: 20;
-  cursor: grab;
-  user-select: none;
-}
-
-.hand:active {
-  cursor: grabbing;
-}
-
-.hand-icon {
-  font-size: 5rem;
-  display: block;
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-  transform: rotate(-20deg);
-}
-
-.hand-hint {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
+  transition: transform 0.3s ease;
+  transform: rotate(180deg);
 }
 
 .card {
@@ -247,8 +351,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .picking-message p {
@@ -331,12 +439,8 @@
     height: 500px;
   }
 
-  .hat-top {
-    font-size: 10rem;
-  }
-
-  .hand-icon {
-    font-size: 4rem;
+  .hat-image {
+    width: min(60vw, 300px);
   }
 
   .card-inner {
@@ -354,12 +458,8 @@
 }
 
 @media (max-width: 480px) {
-  .hat-top {
-    font-size: 8rem;
-  }
-
-  .hand-icon {
-    font-size: 3rem;
+  .hat-image {
+    width: min(70vw, 250px);
   }
 
   .sparkle {

@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import Login from './components/Login' // eslint-disable-line no-unused-vars
-import MagicalHat from './components/MagicalHat' // eslint-disable-line no-unused-vars
-import './App.css'
+import { useState } from "react";
+import Login from "./components/Login"; // eslint-disable-line no-unused-vars
+import MagicalHat from "./components/MagicalHat"; // eslint-disable-line no-unused-vars
+import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   const handleLogin = (userData) => {
-    setUser(userData)
-  }
+    setUser(userData);
+  };
 
   const handlePickComplete = () => {
     setTimeout(() => {
       // Reset after showing the result
-      setUser(null)
-    }, 5000)
-  }
+      setUser(null);
+    }, 5000);
+  };
 
   return (
     <div className="app">
@@ -25,7 +25,7 @@ function App() {
         <MagicalHat user={user} onPickComplete={handlePickComplete} />
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
