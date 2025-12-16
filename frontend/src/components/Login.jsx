@@ -1,63 +1,55 @@
-import { useState } from 'react';
-import { mockValidateUser, useMockApi } from '../utils/mockApi';
-import './Login.css';
+import { useState } from "react";
+import dataManager from "../utils/dataManager";
+import "./Login.css";
 
-const Login = ({ onLogin }) => {
-  const [name, setName] = useState('');
-  const [dob, setDob] = useState('');
-  const [error, setError] = useState('');
+const Login = ({ onLogin, onAdminAccess }) => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const shouldUseMockApi = useMockApi();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
-    if (!name.trim() || !dob) {
-      setError('Please enter both name and date of birth');
+    if (!email.trim()) {
+      setError("Please enter your Walmart email");
       setLoading(false);
       return;
     }
 
-    try {
-      let data;
-      
-      // Use mock API if in development mode
-      if (shouldUseMockApi) {
-        data = await mockValidateUser(name.trim(), dob);
-      } else {
-        // Call Google Apps Script API
-        const response = await fetch(
-          import.meta.env.VITE_APPS_SCRIPT_URL,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              action: 'validateUser',
-              name: name.trim(),
-              dob: dob,
-            }),
-          }
-        );
-
-        data = await response.json();
+    // Check if this is admin email
+    if (email.trim().toLowerCase() === "admin@walmart.com") {
+      setLoading(false);
+      if (onAdminAccess) {
+        onAdminAccess();
+        return;
       }
+    }
+
+    // Extract name from email (everything before @)
+    const userName = email.split("@")[0].replace(/[._]/g, " ");
+    const userId = email.toLowerCase();
+
+    try {
+      // Use data manager to validate user
+      const data = await dataManager.validateUser(email.trim());
 
       if (data.success) {
-        if (data.alreadyPicked) {
-          setError('You have already picked your Secret Santa!');
-        } else {
-          onLogin({ name: name.trim(), dob, userId: data.userId });
-        }
+        // Pass the user data regardless of pick status
+        onLogin({
+          name: data.name,
+          email: email.trim(),
+          userId: data.userId,
+          alreadyPicked: data.alreadyPicked,
+          pickedRecipient: data.pickedRecipient
+        });
       } else {
-        setError(data.message || 'Invalid credentials. Please check your name and date of birth.');
+        setError(data.message || "Unable to validate email. Please try again.");
       }
     } catch (err) {
-      console.error('Login error:', err);
-      setError('Unable to connect to server. Please try again.');
+      console.error("Login error:", err);
+      setError("Unable to process login. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -68,35 +60,24 @@ const Login = ({ onLogin }) => {
       <div className="login-card">
         <div className="login-header">
           <h1>🎅 Secret Santa 🎄</h1>
-          <p>Enter your details to pick your Secret Santa</p>
+          <p>Enter your Walmart email to pick your Secret Santa</p>
         </div>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="email">Walmart Email</label>
             <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your Walmart email (e.g., john.doe@walmart.com)"
               disabled={loading}
-              autoComplete="name"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="dob">Date of Birth</label>
-            <input
-              id="dob"
-              type="date"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-              disabled={loading}
-              autoComplete="bday"
+              autoComplete="email"
             />
           </div>
           {error && <div className="error-message">{error}</div>}
           <button type="submit" className="login-button" disabled={loading}>
-            {loading ? 'Verifying...' : 'Continue to Pick'}
+            {loading ? "Logging in..." : "Continue to Pick"}
           </button>
         </form>
       </div>

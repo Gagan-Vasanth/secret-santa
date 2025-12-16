@@ -3,48 +3,216 @@
  * This simulates the Google Apps Script responses
  */
 
-// TODO: Replace with your actual users from Google Sheets for testing
-// Copy the data from your "Users" sheet here
+// Mock users with Walmart email addresses for testing
+// In production, any Walmart email will be accepted without validation
 const mockUsers = [
   {
-    name: "Gagan",
-    dob: "2025-12-14",
-    userId: "r0v05mk",
+    name: "APAR SHARMA",
+    email: "apar.sharma@walmart.com",
+    userId: "apar.sharma@walmart.com",
     hasPicked: false,
   },
   {
-    name: "Jane Smith",
-    dob: "1992-05-20",
-    userId: "janesmith_002",
+    name: "Dilip Kumar",
+    email: "dilip.kumar2@walmart.com",
+    userId: "dilip.kumar2@walmart.com",
     hasPicked: false,
   },
   {
-    name: "Bob Johnson",
-    dob: "1988-11-30",
-    userId: "bobjohnson_003",
+    name: "Gagan Vasanth",
+    email: "gagan.vasanth@walmart.com",
+    userId: "gagan.vasanth@walmart.com",
     hasPicked: false,
   },
   {
-    name: "Alice Williams",
-    dob: "1995-07-12",
-    userId: "alicewilliams_004",
+    name: "Madhanraj G",
+    email: "m.gunasekaran@walmart.com",
+    userId: "m.gunasekaran@walmart.com",
     hasPicked: false,
   },
   {
-    name: "Charlie Brown",
-    dob: "1991-03-25",
-    userId: "charliebrown_005",
+    name: "S Manikandan",
+    email: "m.sivasubramanian@walmart.com",
+    userId: "m.sivasubramanian@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Neha Mohanty",
+    email: "neha.mohanty@walmart.com",
+    userId: "neha.mohanty@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Nitin Mohan",
+    email: "nitin.mohan@walmart.com",
+    userId: "nitin.mohan@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Poojitha B N",
+    email: "poojitha.b.n@walmart.com",
+    userId: "poojitha.b.n@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Ritwij Bhattacharya",
+    email: "ritwij.bhattacharya@walmart.com",
+    userId: "ritwij.bhattacharya@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Shruti Gupta",
+    email: "shruti.gupta@walmart.com",
+    userId: "shruti.gupta@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Siva Prathap Reddy Chinta",
+    email: "sivaprathapreddy.chi@walmart.com",
+    userId: "sivaprathapreddy.chi@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Swapnil Kumar",
+    email: "swapnil.kumar@walmart.com",
+    userId: "swapnil.kumar@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Twinkle Benedict",
+    email: "twinkle.benedict@walmart.com",
+    userId: "twinkle.benedict@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Vijayendra Mp",
+    email: "vijayendra.mp@walmart.com",
+    userId: "vijayendra.mp@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Vinay Pareek",
+    email: "vinay.pareek@walmart.com",
+    userId: "vinay.pareek@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Yuvan Shankar Karthick Shanmugavelu",
+    email: "yuvan.shankar.karthick.shanmugavelu@walmart.com",
+    userId: "yuvan.shankar.karthick.shanmugavelu@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Aiswarya Anand S",
+    email: "aiswarya.anands@walmart.com",
+    userId: "aiswarya.anands@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Arunkumar Ravichandran",
+    email: "arunkumar.ravichandran1@walmart.com",
+    userId: "arunkumar.ravichandran1@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Balram Mirani",
+    email: "balram.mirani@walmart.com",
+    userId: "balram.mirani@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Eshan Jain",
+    email: "eshan.jain@walmart.com",
+    userId: "eshan.jain@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Karthik Gopal",
+    email: "karthik.gopal@walmart.com",
+    userId: "karthik.gopal@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Mohamed Ashik",
+    email: "mohamed.ashik@walmart.com",
+    userId: "mohamed.ashik@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Neha Jain",
+    email: "neha.jain@walmart.com",
+    userId: "neha.jain@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Nishith Hebbur Mahesh",
+    email: "nishith.hm@walmart.com",
+    userId: "nishith.hm@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Parth Goyal",
+    email: "parth.goyal@walmart.com",
+    userId: "parth.goyal@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Pranav Sethi",
+    email: "pranav.sethi@walmart.com",
+    userId: "pranav.sethi@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Saman Khan",
+    email: "saman.khan@walmart.com",
+    userId: "saman.khan@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Shiva Sankaran Natarajan",
+    email: "shiva.sankaran.natarajan@walmart.com",
+    userId: "shiva.sankaran.natarajan@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Shubham Bansal",
+    email: "shubham.bansal@walmart.com",
+    userId: "shubham.bansal@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Sounak Pal",
+    email: "sounak.pal@walmart.com",
+    userId: "sounak.pal@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Swati Pandey",
+    email: "swati.pandey@walmart.com",
+    userId: "swati.pandey@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Sucharitha Chapparam",
+    email: "sucharitha.chapparam@walmart.com",
+    userId: "sucharitha.chapparam@walmart.com",
+    hasPicked: false,
+  },
+  {
+    name: "Naveen Mansur",
+    email: "naveen.mansur@walmart.com",
+    userId: "naveen.mansur@walmart.com",
     hasPicked: false,
   },
 ];
 
 const assignments = [];
 
-export const mockValidateUser = (name, dob) => {
+export const mockValidateUser = (email) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const user = mockUsers.find(
-        (u) => u.name.toLowerCase() === name.toLowerCase() && u.dob === dob
+        (u) => u.email.toLowerCase() === email.toLowerCase()
       );
 
       if (user) {
@@ -52,15 +220,19 @@ export const mockValidateUser = (name, dob) => {
           success: true,
           alreadyPicked: user.hasPicked,
           userId: user.userId,
+          name: user.name,
         });
       } else {
+        // For Walmart email, always allow login (no validation)
+        const userName = email.split("@")[0].replace(/[._]/g, " ");
         resolve({
-          success: false,
-          message:
-            "Invalid credentials. Please check your name and date of birth.",
+          success: true,
+          alreadyPicked: false,
+          userId: email.toLowerCase(),
+          name: userName,
         });
       }
-    }, 1000); // Simulate network delay
+    }, 500); // Reduced delay since no validation
   });
 };
 

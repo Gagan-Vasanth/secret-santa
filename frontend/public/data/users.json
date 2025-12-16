@@ -1,0 +1,217 @@
+{
+  "users": [
+    {
+      "name": "APAR SHARMA",
+      "email": "apar.sharma@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Dilip Kumar",
+      "email": "dilip.kumar2@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Gagan Vasanth",
+      "email": "gagan.vasanth@walmart.com",
+      "hasPicked": true,
+      "pickedRecipient": "Twinkle Benedict"
+    },
+    {
+      "name": "Madhanraj G",
+      "email": "m.gunasekaran@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "S Manikandan",
+      "email": "m.sivasubramanian@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Neha Mohanty",
+      "email": "neha.mohanty@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Nitin Mohan",
+      "email": "nitin.mohan@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Poojitha B N",
+      "email": "poojitha.b.n@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Ritwij Bhattacharya",
+      "email": "ritwij.bhattacharya@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Shruti Gupta",
+      "email": "shruti.gupta@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Siva Prathap Reddy Chinta",
+      "email": "sivaprathapreddy.chi@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Swapnil Kumar",
+      "email": "swapnil.kumar@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Twinkle Benedict",
+      "email": "twinkle.benedict@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Vijayendra Mp",
+      "email": "vijayendra.mp@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Vinay Pareek",
+      "email": "vinay.pareek@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Yuvan Shankar Karthick Shanmugavelu",
+      "email": "yuvan.shankar.karthick.shanmugavelu@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Aiswarya Anand S",
+      "email": "aiswarya.anands@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Arunkumar Ravichandran",
+      "email": "arunkumar.ravichandran1@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Balram Mirani",
+      "email": "balram.mirani@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Eshan Jain",
+      "email": "eshan.jain@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Karthik Gopal",
+      "email": "karthik.gopal@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Mohamed Ashik",
+      "email": "mohamed.ashik@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Neha Jain",
+      "email": "neha.jain@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Nishith Hebbur Mahesh",
+      "email": "nishith.hm@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Parth Goyal",
+      "email": "parth.goyal@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Pranav Sethi",
+      "email": "pranav.sethi@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Saman Khan",
+      "email": "saman.khan@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Shiva Sankaran Natarajan",
+      "email": "shiva.sankaran.natarajan@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Shubham Bansal",
+      "email": "shubham.bansal@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Sounak Pal",
+      "email": "sounak.pal@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Swati Pandey",
+      "email": "swati.pandey@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Naveen Mansur",
+      "email": "naveen.mansur@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Sucharitha Chapparam",
+      "email": "sucharitha.chapparam@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    },
+    {
+      "name": "Anu Gopakumar Geetha",
+      "email": "Anu.Gopakumar.Geetha@walmart.com",
+      "hasPicked": false,
+      "pickedRecipient": ""
+    }
+  ],
+  "assignments": [
+    {
+      "giverEmail": "gagan.vasanth@walmart.com",
+      "giverName": "Gagan Vasanth",
+      "recipientEmail": "twinkle.benedict@walmart.com",
+      "recipientName": "Twinkle Benedict",
+      "timestamp": "2025-12-16T08:00:02.273Z"
+    }
+  ]
+}

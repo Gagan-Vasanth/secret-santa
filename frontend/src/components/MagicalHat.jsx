@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { mockPickRecipient, useMockApi } from "../utils/mockApi";
+import dataManager from "../utils/dataManager";
 import magicianHat from "../assets/magician-hat.png";
 import "./MagicalHat.css";
 
@@ -10,12 +10,12 @@ const MagicalHat = ({ user, onPickComplete }) => {
   const [showEntrance, setShowEntrance] = useState(false);
   const [showCardReveal, setShowCardReveal] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [alreadyPickedResult, setAlreadyPickedResult] = useState(null);
   const hatRef = useRef(null);
   const cardRef = useRef(null);
   const sparklesRef = useRef(null);
   const containerRef = useRef(null);
   const confettiTimeoutRef = useRef(null);
-  const shouldUseMockApi = useMockApi();
 
   const createConfetti = () => {
     const colors = [
@@ -55,35 +55,41 @@ const MagicalHat = ({ user, onPickComplete }) => {
     }, 5000);
   };
 
+  // Check if user already picked when component mounts
+  useEffect(() => {
+    const checkAlreadyPicked = async () => {
+      if (user.alreadyPicked && user.pickedRecipient) {
+        setAlreadyPickedResult(user.pickedRecipient);
+        setRecipient(user.pickedRecipient);
+        setShowCardReveal(true);
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 5000);
+      } else {
+        // Double-check with data manager
+        await dataManager.init();
+        const userData = dataManager.findUser(user.email);
+        if (userData && userData.hasPicked && userData.pickedRecipient) {
+          setAlreadyPickedResult(userData.pickedRecipient);
+          setRecipient(userData.pickedRecipient);
+          setShowCardReveal(true);
+          setShowConfetti(true);
+          setTimeout(() => setShowConfetti(false), 5000);
+        }
+      }
+    };
+    
+    checkAlreadyPicked();
+  }, [user]);
+
   const pickRecipient = async () => {
-    if (isPicking || recipient) return;
+    if (isPicking || recipient || alreadyPickedResult) return;
 
     setIsPicking(true);
     setError("");
 
     try {
-      let data;
-
-      // Use mock API if in development mode
-      if (shouldUseMockApi) {
-        data = await mockPickRecipient(user.userId, user.name);
-      } else {
-        // Call backend to pick recipient
-        const response = await fetch(import.meta.env.VITE_APPS_SCRIPT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            action: "pickRecipient",
-            userId: user.userId,
-            name: user.name,
-            dob: user.dob,
-          }),
-        });
-
-        data = await response.json();
-      }
+      // Use data manager to pick recipient
+      const data = await dataManager.pickRecipient(user.email, user.name);
 
       if (data.success) {
         setRecipient(data.recipient);
@@ -98,7 +104,7 @@ const MagicalHat = ({ user, onPickComplete }) => {
       }
     } catch (err) {
       console.error("Pick error:", err);
-      setError("Unable to connect to server. Please try again.");
+      setError("Unable to process pick. Please try again.");
       setIsPicking(false);
     }
   };
@@ -131,9 +137,14 @@ const MagicalHat = ({ user, onPickComplete }) => {
       <div className="scene-header">
         <h2>✨ Magic Hat ✨</h2>
         <p>Hello, {user.name}!</p>
-        {!recipient && (
+        {!recipient && !alreadyPickedResult && (
           <p className="instruction">
             Click the hat to pick your Secret Santa!
+          </p>
+        )}
+        {alreadyPickedResult && (
+          <p className="instruction already-picked">
+            🎉 You have already picked your Secret Santa! 🎉
           </p>
         )}
       </div>
@@ -169,7 +180,12 @@ const MagicalHat = ({ user, onPickComplete }) => {
             <div className="card-inner">
               <h3>Your Secret Santa is:</h3>
               <div className="recipient-name">{recipient}</div>
-              <p className="card-message">🎁 Get them something special! 🎁</p>
+              <p className="card-message">
+                {alreadyPickedResult 
+                  ? "🎁 Remember to get them something special! 🎁"
+                  : "🎁 Get them something special! 🎁"
+                }
+              </p>
               <button className="done-button" onClick={handleComplete}>
                 Done
               </button>
