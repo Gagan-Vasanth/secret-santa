@@ -179,6 +179,8 @@ Contributions, issues, and feature requests are welcome!
 
 ## 👏 Acknowledgments
 
+- We have removed the GSAP as we don't really use the animations in this also
+- Also removed the JSON based file updates to save the data when the santa is selected by the user
 - GSAP for amazing animation capabilities
 - Google Apps Script for serverless backend
 - The Secret Santa tradition for bringing joy to the holidays!
